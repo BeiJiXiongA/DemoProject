@@ -6,4 +6,4 @@ Get an image from customed rect in current image
 
 Welcome superman can help me optimize my trouble code and the way to relize.
 
-ha~ha~ha~ i don't know whether can understand foreigns.
+ha~ha~ha~ i don't know whether can understand foreigners.
