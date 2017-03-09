@@ -38,7 +38,7 @@
     doneItem.target = self;
     doneItem.action = @selector(doneClick);
     
-    drag = [[DragView alloc] initWithFrame:self.view.bounds];
+    drag = [[DragView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
     [self.view addSubview:drag];
     
 }

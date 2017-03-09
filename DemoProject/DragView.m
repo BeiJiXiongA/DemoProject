@@ -8,9 +8,6 @@
 
 #import "DragView.h"
 
-#define COVER_ALPHA  (0.6f)
-#define VIEW_DIAMETER  (30)
-
 @interface DragView ()<UIScrollViewDelegate>
 {
     UIView *currentTouchView;
@@ -41,26 +38,46 @@
     return self;
 }
 
+-(UIImage *)getImageFromImage:(CGRect)myImageRect{
+    //大图bigImage
+    //定义myImageRect，截图的区域
+//    CGRect myImageRect = CGRectMake(10.0, 10.0, 57.0, 57.0);
+    UIImage* bigImage= [UIImage imageNamed:@"timg.jpeg"];
+    CGImageRef imageRef = bigImage.CGImage;
+    CGImageRef subImageRef = CGImageCreateWithImageInRect(imageRef, myImageRect);
+    CGSize size;
+    size.width = 57.0;
+    size.height = 57.0;
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, myImageRect, subImageRef);
+    UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
+    UIGraphicsEndImageContext();
+    return smallImage;
+}
+
 -(UIImage *)getImage
 {
-    UIImage *image1 = [self demoImage].image;
-    CGImageRef cgRef = image1.CGImage;
-    CGSize size = CGSizeMake((_rightLine.right - _leftLine.left)*_containerScrollView.zoomScale, (_bottomLine.bottom - _topLine.top)*_containerScrollView.zoomScale);
-    CGPoint origin = CGPointMake(fabs(_containerScrollView.contentOffset.x)+_leftLine.left, fabs(_containerScrollView.contentOffset.y)+_topLine.top+64);
-    CGRect newRect = CGRectMake(origin.x, origin.y, size.width, size.height);
-    CGImageRef imageRef = CGImageCreateWithImageInRect(cgRef, newRect);
-    UIImage *thumbScale = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    return thumbScale;
+//    UIImage *image1 = [self demoImage].image;
+//    CGSize size = CGSizeMake((_rightLine.right - _leftLine.left)*_containerScrollView.zoomScale, (_bottomLine.bottom - _topLine.top)*_containerScrollView.zoomScale);
+//    CGPoint origin = CGPointMake(fabs(_containerScrollView.contentOffset.x)+_leftLine.left, fabs(_containerScrollView.contentOffset.y)+_topLine.top+64);
+//    CGRect newRect = CGRectMake(origin.x, origin.y, size.width, size.height);
+    
+    
+//    CGImageRef imageRef = CGImageCreateWithImageInRect(cgRef, newRect);
+//    UIImage *thumbScale = [UIImage imageWithCGImage:imageRef];
+//    CGImageRelease(imageRef);
+//    return thumbScale;
     
 //    UIImage *image = [self demoImage].image;
 //    // 开启图片上下文
-//    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0);
+//    UIGraphicsBeginImageContextWithOptions(_containerScrollView.contentSize, NO, 0);
 //    // 获取图形上下文
 //    CGContextRef crf = UIGraphicsGetCurrentContext();
 //    
-//    CGSize size = CGSizeMake(_rightLine.right - _leftLine.left, _bottomLine.bottom - _topLine.top);
+//    CGSize size = CGSizeMake((_rightLine.right - _leftLine.left)*_containerScrollView.zoomScale, (_bottomLine.bottom - _topLine.top)*_containerScrollView.zoomScale);
 //    CGPoint origin = CGPointMake(fabs(_containerScrollView.contentOffset.x)+_leftLine.left, fabs(_containerScrollView.contentOffset.y)+_topLine.top+64);
+////    origin = CGPointMake(0, 0);
 //    CGRect newRect = CGRectMake(origin.x, origin.y, size.width, size.height);
 ////    CGRect newRect = CGRectMake(0, 0, _rightLine.right - _leftLine.left, _bottomLine.bottom - _topLine.top);
 //    CGContextAddRect(crf, newRect);
@@ -70,7 +87,7 @@
 //    
 //    // 将图片画到图片上下文中
 //    
-//    [image drawAtPoint:CGPointZero];
+//    [image drawAtPoint:CGPointMake(-origin.x, -origin.y)];
 //    // 获取图片
 //    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
 //    
@@ -79,19 +96,21 @@
 //    
 //    return newImage;
     
-//    CGSize size = CGSizeMake(_rightLine.right - _leftLine.left, _bottomLine.bottom - _topLine.top);
-//    CGPoint origin = CGPointMake(fabs(_containerScrollView.contentOffset.x)+_leftLine.left, fabs(_containerScrollView.contentOffset.y)+_topLine.top+64);
-//    CGRect rect = CGRectMake(origin.x, origin.y, size.width, size.height);
-//    UIGraphicsBeginImageContext(self.containerScrollView.contentSize);
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    CGContextSaveGState(context);
-//    UIRectClip(rect);
-//    [self.containerScrollView.layer renderInContext:context];
-//    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    
-//    UIImage* newimage = [UIImage imageWithCGImage:CGImageCreateWithImageInRect([theImage CGImage], rect)];
-//    return newimage;
+    
+    CGSize size = CGSizeMake((_rightLine.right - _leftLine.left)*_containerScrollView.zoomScale, (_bottomLine.bottom - _topLine.top)*_containerScrollView.zoomScale);
+    CGPoint origin = CGPointMake(fabs(_containerScrollView.contentOffset.x)+_leftLine.left, fabs(_containerScrollView.contentOffset.y)+_topLine.top);
+    CGRect rect = CGRectMake(origin.x, origin.y+UI_NAV_HEIGHT, size.width, size.height);
+    UIGraphicsBeginImageContext(self.containerScrollView.contentSize);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    UIRectClip(rect);
+    [self.containerScrollView.layer renderInContext:context];
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIImage* newimage = [UIImage imageWithCGImage:CGImageCreateWithImageInRect([theImage CGImage], rect)];
+    return newimage;
+    
 }
 
 -(void)resetLayout
@@ -507,11 +526,12 @@
 -(UIScrollView *)containerScrollView
 {
     if (!_containerScrollView) {
-        _containerScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+        _containerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
         _containerScrollView.delegate = self;
         [self addSubview:_containerScrollView];
         _containerScrollView.minimumZoomScale = 1;
         _containerScrollView.maximumZoomScale = 5;
+        [_containerScrollView setZoomScale:1.01];
         [_containerScrollView addSubview:[self demoImage]];
     }
     return _containerScrollView;
@@ -520,8 +540,8 @@
 -(UIImageView *)demoImage
 {
     if (!_demoImage) {
-        _demoImage = [[UIImageView alloc] initWithFrame:self.bounds];
-        _demoImage.image = [UIImage imageNamed:@"IMG_0700.jpeg"];
+        _demoImage = [[UIImageView alloc] initWithFrame:_containerScrollView.bounds];
+        _demoImage.image = [UIImage imageNamed:@"timg.jpeg"];
     }
     return _demoImage;
 }

@@ -21,7 +21,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     UIImageView *demoImageView = [[UIImageView alloc] init];
-    demoImageView.frame = CGRectMake(10, 100, _resultImage.size.width, _resultImage.size.height);
+    demoImageView.frame = CGRectMake(10, 100, WIDTH-20, HEIGHT-110);
     demoImageView.image = _resultImage;
     demoImageView.backgroundColor = [UIColor orangeColor];
     demoImageView.contentMode = UIViewContentModeScaleAspectFit;

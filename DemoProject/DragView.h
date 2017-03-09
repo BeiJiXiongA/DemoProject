@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#define COVER_ALPHA  (0.6f)
+#define VIEW_DIAMETER  (30)
+#define UI_NAV_HEIGHT   (64)
+
 @interface DragView : UIView
 @property (nonatomic, strong) UIScrollView *containerScrollView;
 @property (nonatomic, strong) UIImageView *demoImage;

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E4022F7B1E51C1B7000875D7 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4022F7A1E51C1B7000875D7 /* NotificationHandler.swift */; };
+		E415DB571E71482D00EF7C92 /* timg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E415DB561E71482D00EF7C92 /* timg.jpeg */; };
 		E4359DF51DDC045E0060B4DA /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4359DF41DDC045E0060B4DA /* DemoViewController.m */; };
 		E4359DF81DDC363A0060B4DA /* DragView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4359DF71DDC363A0060B4DA /* DragView.m */; };
 		E4359DFD1DDDB8540060B4DA /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4359DFC1DDDB8540060B4DA /* ResultViewController.m */; };
@@ -41,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E4022F791E51C1B7000875D7 /* DemoProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DemoProject-Bridging-Header.h"; sourceTree = "<group>"; };
+		E4022F7A1E51C1B7000875D7 /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
+		E415DB561E71482D00EF7C92 /* timg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timg.jpeg; sourceTree = "<group>"; };
 		E4359DF31DDC045E0060B4DA /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		E4359DF41DDC045E0060B4DA /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		E4359DF61DDC363A0060B4DA /* DragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragView.h; sourceTree = "<group>"; };
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				E4B8A92C1E13948300C72AE6 /* IMG_0700.jpeg */,
+				E415DB561E71482D00EF7C92 /* timg.jpeg */,
 				E447702E1D1CDA7700C9E95F /* AppDelegate.h */,
 				E447702F1D1CDA7700C9E95F /* AppDelegate.m */,
 				E44770311D1CDA7700C9E95F /* ViewController.h */,
@@ -140,6 +146,8 @@
 				E4359DF71DDC363A0060B4DA /* DragView.m */,
 				E4359DFB1DDDB8540060B4DA /* ResultViewController.h */,
 				E4359DFC1DDDB8540060B4DA /* ResultViewController.m */,
+				E4022F7A1E51C1B7000875D7 /* NotificationHandler.swift */,
+				E4022F791E51C1B7000875D7 /* DemoProject-Bridging-Header.h */,
 			);
 			path = DemoProject;
 			sourceTree = "<group>";
@@ -238,6 +246,7 @@
 					E44770271D1CDA7700C9E95F = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = X2AB8TRR33;
+						LastSwiftMigration = 0820;
 					};
 					E44770431D1CDA7700C9E95F = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -276,6 +285,7 @@
 			files = (
 				E4B8A92D1E13948300C72AE6 /* IMG_0700.jpeg in Resources */,
 				E447703E1D1CDA7700C9E95F /* LaunchScreen.storyboard in Resources */,
+				E415DB571E71482D00EF7C92 /* timg.jpeg in Resources */,
 				E447703B1D1CDA7700C9E95F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +318,7 @@
 				E44770301D1CDA7700C9E95F /* AppDelegate.m in Sources */,
 				E4359DF51DDC045E0060B4DA /* DemoViewController.m in Sources */,
 				E4359DF81DDC363A0060B4DA /* DragView.m in Sources */,
+				E4022F7B1E51C1B7000875D7 /* NotificationHandler.swift in Sources */,
 				E447702D1D1CDA7700C9E95F /* main.m in Sources */,
 				E4359DFD1DDDB8540060B4DA /* ResultViewController.m in Sources */,
 			);
@@ -444,6 +455,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = X2AB8TRR33;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DemoProject/Pratice.pch";
 				INFOPLIST_FILE = DemoProject/Info.plist;
@@ -451,6 +463,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangwei.DemoProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DemoProject/DemoProject-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -458,6 +473,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = X2AB8TRR33;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DemoProject/Pratice.pch";
 				INFOPLIST_FILE = DemoProject/Info.plist;
@@ -465,12 +481,15 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangwei.DemoProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DemoProject/DemoProject-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		E447705C1D1CDA7700C9E95F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = DemoProjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -483,6 +502,7 @@
 		E447705D1D1CDA7700C9E95F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = DemoProjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -495,6 +515,7 @@
 		E447705F1D1CDA7700C9E95F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = DemoProjectUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangwei.DemoProjectUITests;
@@ -506,6 +527,7 @@
 		E44770601D1CDA7700C9E95F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = DemoProjectUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangwei.DemoProjectUITests;
