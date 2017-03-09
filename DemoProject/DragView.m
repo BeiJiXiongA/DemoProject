@@ -58,45 +58,6 @@
 
 -(UIImage *)getImage
 {
-//    UIImage *image1 = [self demoImage].image;
-//    CGSize size = CGSizeMake((_rightLine.right - _leftLine.left)*_containerScrollView.zoomScale, (_bottomLine.bottom - _topLine.top)*_containerScrollView.zoomScale);
-//    CGPoint origin = CGPointMake(fabs(_containerScrollView.contentOffset.x)+_leftLine.left, fabs(_containerScrollView.contentOffset.y)+_topLine.top+64);
-//    CGRect newRect = CGRectMake(origin.x, origin.y, size.width, size.height);
-    
-    
-//    CGImageRef imageRef = CGImageCreateWithImageInRect(cgRef, newRect);
-//    UIImage *thumbScale = [UIImage imageWithCGImage:imageRef];
-//    CGImageRelease(imageRef);
-//    return thumbScale;
-    
-//    UIImage *image = [self demoImage].image;
-//    // 开启图片上下文
-//    UIGraphicsBeginImageContextWithOptions(_containerScrollView.contentSize, NO, 0);
-//    // 获取图形上下文
-//    CGContextRef crf = UIGraphicsGetCurrentContext();
-//    
-//    CGSize size = CGSizeMake((_rightLine.right - _leftLine.left)*_containerScrollView.zoomScale, (_bottomLine.bottom - _topLine.top)*_containerScrollView.zoomScale);
-//    CGPoint origin = CGPointMake(fabs(_containerScrollView.contentOffset.x)+_leftLine.left, fabs(_containerScrollView.contentOffset.y)+_topLine.top+64);
-////    origin = CGPointMake(0, 0);
-//    CGRect newRect = CGRectMake(origin.x, origin.y, size.width, size.height);
-////    CGRect newRect = CGRectMake(0, 0, _rightLine.right - _leftLine.left, _bottomLine.bottom - _topLine.top);
-//    CGContextAddRect(crf, newRect);
-//    
-//    //    裁剪图形上下文
-//    CGContextClip(crf);
-//    
-//    // 将图片画到图片上下文中
-//    
-//    [image drawAtPoint:CGPointMake(-origin.x, -origin.y)];
-//    // 获取图片
-//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-//    
-//    // 关闭图形上下文
-//    UIGraphicsEndImageContext();
-//    
-//    return newImage;
-    
-    
     CGSize size = CGSizeMake((_rightLine.right - _leftLine.left)*_containerScrollView.zoomScale, (_bottomLine.bottom - _topLine.top)*_containerScrollView.zoomScale);
     CGPoint origin = CGPointMake(fabs(_containerScrollView.contentOffset.x)+_leftLine.left, fabs(_containerScrollView.contentOffset.y)+_topLine.top);
     CGRect rect = CGRectMake(origin.x, origin.y+UI_NAV_HEIGHT, size.width, size.height);
