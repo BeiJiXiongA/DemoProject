@@ -507,7 +507,7 @@
         [self addSubview:_containerScrollView];
         _containerScrollView.minimumZoomScale = 1;
         _containerScrollView.maximumZoomScale = 5;
-        [_containerScrollView setZoomScale:1.01];
+        [_containerScrollView setZoomScale:1];
         [_containerScrollView addSubview:[self demoImage]];
     }
     return _containerScrollView;
