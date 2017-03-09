@@ -81,6 +81,11 @@
 
 -(void)layoutViewsWithTouchPoint:(CGPoint)point
 {
+    NSLog(@"point == %@",NSStringFromCGPoint(point));
+    if (point.x - VIEW_DIAMETER/2 <= 0 ||
+        point.y - UI_NAV_HEIGHT - VIEW_DIAMETER/2 <= 0) {
+        return ;
+    }
     if (CGRectContainsPoint(_topLine.frame, point)) {
         if (point.y < _bottomLine.top - VIEW_DIAMETER) {
             _topLine.centerY = point.y;
@@ -94,7 +99,7 @@
             _bgView.height = _bottomLine.top - _topLine.bottom;
             _bgView.top = _topLine.bottom;
             
-            _topCoverView.height = _topLine.top;
+            _topCoverView.height = _topLine.top>0?_topLine.top:0;
             
             _leftCoverView.width = _leftLine.left;
             _leftCoverView.height = _bottomLine.bottom - _topLine.top;
@@ -107,6 +112,11 @@
         }
     }else if(CGRectContainsPoint(_bottomLine.frame, point)){
         if (point.y > _topLine.bottom + VIEW_DIAMETER) {
+            
+            if (point.y + VIEW_DIAMETER/2 >= HEIGHT) {
+                return;
+            }
+            
             _bottomLine.centerY = point.y;
             _rightBottomView.centerY = point.y;
             _leftBottomView.centerY = point.y;
@@ -143,12 +153,17 @@
             _bgView.width = _rightLine.left - _leftLine.right;
             _bgView.left = _leftLine.right;
             
-            _leftCoverView.width = _leftLine.left;
+            _leftCoverView.width = _leftLine.left>0?_leftLine.left:0;
             _leftCoverView.height = _bottomLine.bottom - _topLine.top;
             _leftCoverView.top = _topLine.top;
         }
     }else if(CGRectContainsPoint(_rightLine.frame, point)){
         if (point.x > _leftLine.right + VIEW_DIAMETER) {
+            
+            if (point.x + VIEW_DIAMETER/2 >= WIDTH) {
+                return ;
+            }
+            
             _rightLine.centerX = point.x;
             _rightTopView.centerX = point.x;
             _rightBottomView.centerX = point.x;
