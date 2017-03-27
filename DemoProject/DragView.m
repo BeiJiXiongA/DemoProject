@@ -58,20 +58,15 @@
 
 -(UIImage *)getImage
 {
-    CGSize size = CGSizeMake((_rightLine.right - _leftLine.left)*_containerScrollView.zoomScale, (_bottomLine.bottom - _topLine.top)*_containerScrollView.zoomScale);
-    CGPoint origin = CGPointMake(fabs(_containerScrollView.contentOffset.x)+_leftLine.left, fabs(_containerScrollView.contentOffset.y)+_topLine.top);
-    CGRect rect = CGRectMake(origin.x, origin.y+UI_NAV_HEIGHT, size.width, size.height);
-    UIGraphicsBeginImageContext(self.containerScrollView.contentSize);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);
-    UIRectClip(rect);
-    [self.containerScrollView.layer renderInContext:context];
-    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    CGSize size = CGSizeMake((_rightLine.left - _leftLine.right), (_bottomLine.top - _topLine.bottom));
+    CGPoint origin = CGPointMake(_leftLine.right, _topLine.bottom);
+    CGRect rect = CGRectMake(origin.x, origin.y, size.width, size.height);
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, YES, 1);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    img = [UIImage imageWithCGImage:CGImageCreateWithImageInRect(img.CGImage, rect)];
     UIGraphicsEndImageContext();
-    
-    UIImage* newimage = [UIImage imageWithCGImage:CGImageCreateWithImageInRect([theImage CGImage], rect)];
-    return newimage;
-    
+    return img;
 }
 
 -(void)resetLayout
